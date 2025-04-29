@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import axios from "axios";
+import BookContentFinder from "@/components/BookContentFinder";
 
 export default function Home() {
   const [bookTitle, setBookTitle] = useState("");
   const [response, setResponse] = useState([]);
   return (
     <div>
-      Notes-ai
+      <BookContentFinder />
       <br></br>
       <input type="text" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
       <br></br>
