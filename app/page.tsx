@@ -3,10 +3,12 @@
 import { useState } from "react";
 import axios from "axios";
 import BookContentFinder from "@/components/BookContentFinder";
+import { useBookIndexStore } from "@/stores/bookIndex";
 
 export default function Home() {
   const [bookTitle, setBookTitle] = useState("");
   const [response, setResponse] = useState([]);
+  const { setBookIndex } = useBookIndexStore();
   return (
     <div>
       <BookContentFinder />
@@ -21,6 +23,7 @@ export default function Home() {
           },
         });
         console.log("response", response);
+        setBookIndex(response.data);
         setResponse(response.data);
       }}>get index</button>
       <br></br>
