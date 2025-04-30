@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import axios from "axios";
-
+import { useRouter } from 'next/navigation';
 import { useBookIndexStore } from "@/stores/bookIndex";
-
 
 export default function BookContentFinder() {
     const [bookTitle, setBookTitle] = useState("");
-    const [response, setResponse] = useState([]);
-    const { bookIndex, setBookIndex } = useBookIndexStore();
+    const { setBookIndex } = useBookIndexStore();
+    const router = useRouter();
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1 className="text-3xl">book-ai</h1>
@@ -26,9 +26,8 @@ export default function BookContentFinder() {
                 });
                 console.log("response", response);
                 setBookIndex(response.data);
-                setResponse(response.data);
+                router.push('/editor');
             }}>get index</button>
-            {JSON.stringify(bookIndex)}
         </div>
     );
 }
