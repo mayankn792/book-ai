@@ -11,23 +11,27 @@ export default function BookContentFinder() {
     const router = useRouter();
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-3xl">book-ai</h1>
-            <h5 className="text-md text-gray-600">Get a book content</h5>
-            <br></br>
-            <input type="text" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
-            <br></br>
-            <button onClick={async () => {
-                console.log("book title", bookTitle);
-                const response = await axios.get("/api/book-index", {
-                    params: {
-                        bookTitle: bookTitle,
-                    },
-                });
-                console.log("response", response);
-                setBookIndex(response.data);
-                router.push('/editor');
-            }}>get index</button>
+        <div className="flex flex-row">
+            <div className="basis-2/12"></div>
+            <div className="basic-8/12 flex flex-col justify-center min-h-screen py-2">
+                <h5 className="text-2xl">What do you want us to generate?</h5>
+                <br></br>
+                <textarea className="appearance-none border-none p-0 font-inherit text-inherit outline-none bg-transparent resize-none" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
+                <br></br>
+                <button className="btn btn-primary" onClick={async () => {
+                    console.log("book title", bookTitle);
+                    const response = await axios.get("/api/book-index", {
+                        params: {
+                            bookTitle: bookTitle,
+                        },
+                    });
+                    console.log("response", response);
+                    setBookIndex(response.data);
+                    router.push('/editor');
+                }}>Generate</button>
+            </div>
+            <div className="basis-2/12"></div>
         </div>
+
     );
 }
