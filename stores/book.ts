@@ -10,9 +10,9 @@ export interface BookTopic {
     subtopics?: BookSubTopic[];
 }
 
-interface BookSubTopic {
+export interface BookSubTopic {
     subtopic: string;
-    content: string;
+    content?: string;
 }
 
 interface BookState {
@@ -40,7 +40,7 @@ export const useBookStore = create<BookState>((set) => ({
         }
 
         const topic = book.bookTopic.find((bt: BookTopic) => bt.topic === bookTopic);
-        if (topic) {
+        if (topic && topic.subtopics) {
             topic.subtopics.push(bookSubTopic);
         }
         
@@ -53,7 +53,7 @@ export const useBookStore = create<BookState>((set) => ({
         }
 
         const topic = book.bookTopic.find((bt: BookTopic) => bt.topic === bookTopic);
-        if (topic) {
+        if (topic && topic.subtopics) {
             const subtopic = topic.subtopics.find((st: BookSubTopic) => st.subtopic === bookSubTopic);
             if (subtopic) {
                 subtopic.content = content;

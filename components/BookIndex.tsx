@@ -13,17 +13,13 @@ export default function BookIndex({ title }: TitleProp) {
     const { bookIndex } = useBookIndexStore();
     const { addBookTopic, addBookSubTopic } = useBookStore();
     const [bookContent, setBookContent] = useState("");
+    console.log(bookIndex);
     return <div>
         {
+          
            bookIndex.map((item: { topic: string; subtopics: string[] }) => (
              <div key={item.topic}>
                <h1>topic - {item.topic}</h1>
-                {
-                    const bookTopic: BookTopic = {
-
-                    }
-                 addBookTopic(title, item.topic)
-                }
                <ul>
                  {item.subtopics.map((subtopic: string) => (
                    <li key={subtopic}>

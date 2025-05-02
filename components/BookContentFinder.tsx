@@ -4,12 +4,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { useBookIndexStore } from "@/stores/bookIndex";
-import { useBookStore, Book } from "@/stores/book";
+import { useBookStore, Book, BookSubTopic } from "@/stores/book";
 
 export default function BookContentFinder() {
     const [bookTitle, setBookTitle] = useState("");
     const { setBookIndex } = useBookIndexStore();
-    const { addBook } = useBookStore();
+    const { books, addBook, addBookTopic, addBookSubTopic } = useBookStore();
     const router = useRouter();
 
     return (
@@ -36,7 +36,22 @@ export default function BookContentFinder() {
 
                             console.log("response", response);
                             setBookIndex(response.data);
+                            response.data.map((item : { topic: string, subtopics: string[] }) => {
+                                console.log(item.topic, item.subtopics);
+                                const bookTopic = {
+                                    topic: item.topic
+                                }
+                                addBookTopic(bookTitle, bookTopic)
+                                item.subtopics.map((subtopic: string) => {
+                                    const bookSubTopic = {
+                                        subtopic: subtopic,
+                                    }
+                                    addBookSubTopic(bookTitle, item.topic, bookSubTopic);
+                                })
+                            })
                             
+                            console.log("logging book here...")
+                            console.log(books)
                             router.push(`/editor?bookTitle=${encodeURIComponent(bookTitle)}`);
                         }}>Generate</button>
                     </div>
