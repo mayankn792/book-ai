@@ -2,16 +2,28 @@
 
 import axios from "axios";
 import { useBookIndexStore } from "@/stores/bookIndex";
+import { useBookStore, BookTopic } from "@/stores/book";
 import { useState } from "react";
 
-export default function BookIndex() {
+interface TitleProp {
+    title: string | null,
+}
+
+export default function BookIndex({ title }: TitleProp) {
     const { bookIndex } = useBookIndexStore();
+    const { addBookTopic, addBookSubTopic } = useBookStore();
     const [bookContent, setBookContent] = useState("");
     return <div>
         {
            bookIndex.map((item: { topic: string; subtopics: string[] }) => (
              <div key={item.topic}>
                <h1>topic - {item.topic}</h1>
+                {
+                    const bookTopic: BookTopic = {
+
+                    }
+                 addBookTopic(title, item.topic)
+                }
                <ul>
                  {item.subtopics.map((subtopic: string) => (
                    <li key={subtopic}>

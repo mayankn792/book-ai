@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
-interface Book {
+export interface Book {
     title: string;
-    bookTopic: BookTopic[];
+    bookTopic?: BookTopic[];
 }
 
-interface BookTopic {
+export interface BookTopic {
     topic: string;
-    subtopics: BookSubTopic[];
+    subtopics?: BookSubTopic[];
 }
 
 interface BookSubTopic {
@@ -28,15 +28,15 @@ export const useBookStore = create<BookState>((set) => ({
     addBook: (book: Book) => set((state: BookState) => ({ books: [...state.books, book] })),
     addBookTopic: (bookTitle: string, bookTopic: BookTopic) => set((state: BookState) => {
         const book = state.books.find((book: Book) => book.title === bookTitle);
-        if (book) {
+        if (book && book.bookTopic) {
             book.bookTopic.push({ topic: bookTopic.topic, subtopics: bookTopic.subtopics })
         }
-        return state;
+        return { ...state };
     }),
     addBookSubTopic: (bookTitle: string, bookTopic: string, bookSubTopic: BookSubTopic) => set((state: BookState) => {
         const book = state.books.find((book: Book) => book.title === bookTitle);
-        if (!book) {
-            return state;
+        if (!book || !book.bookTopic) {
+            return { ...state };
         }
 
         const topic = book.bookTopic.find((bt: BookTopic) => bt.topic === bookTopic);
@@ -44,11 +44,11 @@ export const useBookStore = create<BookState>((set) => ({
             topic.subtopics.push(bookSubTopic);
         }
         
-        return state;
+        return { ...state };
     }),
     addBookContent: (bookTitle: string, bookTopic: string, bookSubTopic: string, content: string) => set((state: BookState) => {
         const book = state.books.find((book: Book) => book.title === bookTitle);
-        if (!book) {
+        if (!book || !book.bookTopic) {
             return { ...state };
         }
 
