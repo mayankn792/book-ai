@@ -2,17 +2,17 @@ import { create } from 'zustand';
 
 export interface Book {
     title: string;
-    bookTopic?: BookTopic[];
+    bookTopic: BookTopic[];
 }
 
 export interface BookTopic {
     topic: string;
-    subtopics?: BookSubTopic[];
+    subtopics: BookSubTopic[];
 }
 
 export interface BookSubTopic {
     subtopic: string;
-    content?: string;
+    content: string;
 }
 
 interface BookState {

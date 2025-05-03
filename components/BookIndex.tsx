@@ -11,12 +11,13 @@ interface TitleProp {
 
 export default function BookIndex({ title }: TitleProp) {
     const { bookIndex } = useBookIndexStore();
-    const { addBookTopic, addBookSubTopic } = useBookStore();
+    const { books, addBookTopic, addBookSubTopic } = useBookStore();
     const [bookContent, setBookContent] = useState("");
     console.log(bookIndex);
+    console.log("-----books------");
+    console.log(books);
     return <div>
         {
-          
            bookIndex.map((item: { topic: string; subtopics: string[] }) => (
              <div key={item.topic}>
                <h1>topic - {item.topic}</h1>

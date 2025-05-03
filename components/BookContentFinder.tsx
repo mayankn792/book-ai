@@ -25,6 +25,7 @@ export default function BookContentFinder() {
                             console.log("book title", bookTitle);
                             const book: Book = {
                                 title: bookTitle,
+                                bookTopic: []
                             }
                             addBook(book);
 
@@ -39,12 +40,14 @@ export default function BookContentFinder() {
                             response.data.map((item : { topic: string, subtopics: string[] }) => {
                                 console.log(item.topic, item.subtopics);
                                 const bookTopic = {
-                                    topic: item.topic
+                                    topic: item.topic,
+                                    subtopics: [],
                                 }
                                 addBookTopic(bookTitle, bookTopic)
                                 item.subtopics.map((subtopic: string) => {
                                     const bookSubTopic = {
                                         subtopic: subtopic,
+                                        content: "",
                                     }
                                     addBookSubTopic(bookTitle, item.topic, bookSubTopic);
                                 })
