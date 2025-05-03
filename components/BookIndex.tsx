@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, BookTopic } from "@/stores/book";
+import { Context, useContextStore } from "@/stores/context";
 import { useState } from "react";
 
 interface TitleProp {
@@ -12,6 +13,7 @@ interface TitleProp {
 export default function BookIndex({ title }: TitleProp) {
     const { bookIndex } = useBookIndexStore();
     const { books, addBookTopic, addBookSubTopic } = useBookStore();
+    const { setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useContextStore();
     const [bookContent, setBookContent] = useState("");
     console.log(bookIndex);
     console.log("-----books------");
@@ -33,8 +35,13 @@ export default function BookIndex({ title }: TitleProp) {
                        bookSubTopic: subtopic,
                      },
                      });
+                     
                      console.log("contentResponse", contentResponse.data);
                      setBookContent(contentResponse.data);
+
+                     setGlobalBookTopic(item.topic)
+                     setGlobalBookSubTopic(subtopic)
+                     setGlobalContent(contentResponse.data)
                    }}>
                      Get Content
                    </button>
@@ -44,6 +51,5 @@ export default function BookIndex({ title }: TitleProp) {
              </div>
            ))
          }
-        {JSON.stringify(bookContent)}
     </div>
 }

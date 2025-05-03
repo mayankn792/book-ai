@@ -5,12 +5,13 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, Book, BookSubTopic } from "@/stores/book";
-import { Context } from "@/stores/context"
+import { Context, useContextStore } from "@/stores/context"
 
 export default function BookContentFinder() {
     const [bookTitle, setBookTitle] = useState("");
     const { setBookIndex } = useBookIndexStore();
     const { books, addBook, addBookTopic, addBookSubTopic } = useBookStore();
+    const { setGlobalBookTitle } = useContextStore();
     const router = useRouter();
 
     return (
@@ -29,7 +30,7 @@ export default function BookContentFinder() {
                                 bookTopic: []
                             }
                             addBook(book);
-
+                            setGlobalBookTitle(bookTitle); // add title to global context
                             const response = await axios.get("/api/book-index", {
                                 params: {
                                     bookTitle: bookTitle,

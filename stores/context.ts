@@ -9,24 +9,24 @@ export interface Context {
 
 interface ContextState {
     bookContext: Context,
-    setBookTitle: (bookTitle: string) => void,
-    setBookTopic: (bookTopic: string) => void,
-    setBookSubTopic: (bookSubTopic: string) => void,
-    setContent: (content: string) => void,
+    setGlobalBookTitle: (bookTitle: string) => void,
+    setGlobalBookTopic: (bookTopic: string) => void,
+    setGlobalBookSubTopic: (bookSubTopic: string) => void,
+    setGlobalContent: (content: string) => void,
 }
 
 export const useContextStore = create<ContextState>((set) => ({
     bookContext: {},
-    setBookTitle: (bookTitle) => set((state) => ({
+    setGlobalBookTitle: (bookTitle) => set((state) => ({
         bookContext: { ...state.bookContext, bookTitle }
     })),
-    setBookTopic: (bookTopic) => set((state) => ({
+    setGlobalBookTopic: (bookTopic) => set((state) => ({
         bookContext: { ...state.bookContext, bookTopic }
     })),
-    setBookSubTopic: (bookSubTopic) => set((state) => ({
+    setGlobalBookSubTopic: (bookSubTopic) => set((state) => ({
         bookContext: { ...state.bookContext, bookSubTopic }
     })),
-    setContent: (content) => set((state) => ({
+    setGlobalContent: (content) => set((state) => ({
         bookContext: { ...state.bookContext, content }
     })),
 }));

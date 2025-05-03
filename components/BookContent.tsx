@@ -1,13 +1,11 @@
 "use client";
 
-import { useBookIndexStore } from "@/stores/bookIndex";
-import { useState } from "react";
+import { useContextStore } from "@/stores/context";
 
 export default function BookContent() {
-    const { bookIndex } = useBookIndexStore();
-    const [bookContent, setBookContent] = useState("");
+    const { bookContext } = useContextStore();
 
     return <div>
-        {JSON.stringify(bookContent)}
+        {bookContext.content}
     </div>
 }
