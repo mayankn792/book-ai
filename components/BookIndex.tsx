@@ -2,11 +2,11 @@
 
 import axios from "axios";
 import { useBookStore, BookTopic, BookSubTopic } from "@/stores/book";
-import { useContextStore } from "@/stores/context";
+import { useGlobalContextStore } from "@/stores/context";
 
 export default function BookIndex() {
   const { books } = useBookStore();
-  const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useContextStore();
+  const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useGlobalContextStore();
   const book = books.find((book) => book.title === bookContext.bookTitle);
 
   return <div>

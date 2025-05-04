@@ -1,12 +1,12 @@
 "use client";
 
-import { useContextStore } from "@/stores/context";
+import { useGlobalContextStore } from "@/stores/context";
 
 export default function BookContent() {
-    const { bookContext } = useContextStore();
+    const { bookContext } = useGlobalContextStore();
 
     return <div>
-        {/* TODO - format content in HTML */}
+        {/* TODO - Render content in HTML style */}
         {bookContext.content}
     </div>
 }

@@ -4,12 +4,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { useBookStore, Book } from "@/stores/book";
-import { useContextStore } from "@/stores/context"
+import { useGlobalContextStore } from "@/stores/context"
 
 export default function BookIndexer() {
     const [bookTitle, setBookTitle] = useState("");
     const { addBook, addBookTopic, addBookSubTopic } = useBookStore();
-    const { setGlobalBookTitle } = useContextStore();
+    const { setGlobalBookTitle } = useGlobalContextStore();
     const router = useRouter();
 
     return (

@@ -1,21 +1,21 @@
 import { create } from "zustand";
 
-export interface Context {
+export interface GlobalContext {
     bookTitle?: string,
     bookTopic?: string,
     bookSubTopic?: string,
     content?: string,
 }
 
-interface ContextState {
-    bookContext: Context,
+interface GlobalContextState {
+    bookContext: GlobalContext,
     setGlobalBookTitle: (bookTitle: string) => void,
     setGlobalBookTopic: (bookTopic: string) => void,
     setGlobalBookSubTopic: (bookSubTopic: string) => void,
     setGlobalContent: (content: string) => void,
 }
 
-export const useContextStore = create<ContextState>((set) => ({
+export const useGlobalContextStore = create<GlobalContextState>((set) => ({
     bookContext: {},
     setGlobalBookTitle: (bookTitle) => set((state) => ({
         bookContext: { ...state.bookContext, bookTitle }
