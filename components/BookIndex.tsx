@@ -11,13 +11,8 @@ interface TitleProp {
 }
 
 export default function BookIndex({ title }: TitleProp) {
-  const { bookIndex } = useBookIndexStore();
-  const { books, addBookTopic, addBookSubTopic } = useBookStore();
+  const { books } = useBookStore();
   const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useContextStore();
-  const [bookContent, setBookContent] = useState("");
-  console.log(bookIndex);
-  console.log("-----books------");
-  console.log(books);
   const book = books.find((book) => book.title === bookContext.bookTitle);
 
   return <div>
@@ -32,14 +27,11 @@ export default function BookIndex({ title }: TitleProp) {
                 <button onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
-                      //    bookTitle: bookTitle,
+                      bookTitle: bookContext.bookTitle,
                       bookTopic: item.topic,
                       bookSubTopic: subtopic.subtopic,
                     },
                   });
-
-                  console.log("contentResponse", contentResponse.data);
-                  setBookContent(contentResponse.data);
 
                   setGlobalBookTopic(item.topic)
                   setGlobalBookSubTopic(subtopic.subtopic)
