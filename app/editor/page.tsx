@@ -10,10 +10,11 @@ export default function BookEditor() {
 
     console.log("found ..." + bookTitle);
     return <div className="flex flex-row">
-        <div className="basis-4/12"> 
+        <div className="basis-3/12"> 
+            {/* TODO - remove this prop and access book title from global book context */}
             <BookIndex title={bookTitle}></BookIndex>
         </div>
-        <div className="basis-8/12">
+        <div className="basis-9/12">
             <BookContent></BookContent>      
         </div>
     </div>

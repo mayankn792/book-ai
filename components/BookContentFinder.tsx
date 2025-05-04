@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, Book, BookSubTopic } from "@/stores/book";
 import { Context, useContextStore } from "@/stores/context"
-
+//TODO - change the name of this component
 export default function BookContentFinder() {
     const [bookTitle, setBookTitle] = useState("");
     const { setBookIndex } = useBookIndexStore();

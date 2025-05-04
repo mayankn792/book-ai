@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, BookTopic } from "@/stores/book";
-import { Context, useContextStore } from "@/stores/context";
+import { useContextStore } from "@/stores/context";
 import { useState } from "react";
 
 interface TitleProp {
@@ -20,6 +20,7 @@ export default function BookIndex({ title }: TitleProp) {
     console.log(books);
     return <div>
         {
+          //TODO - remove bookIndex and use bookContext
            bookIndex.map((item: { topic: string; subtopics: string[] }) => (
              <div key={item.topic}>
                <h1>topic - {item.topic}</h1>

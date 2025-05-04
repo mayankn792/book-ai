@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-
+//TODO - depricate this component
 interface BookIndex {
     topic: string;
     subtopics: string[];
