@@ -7,7 +7,7 @@ import { useBookStore, Book } from "@/stores/book";
 import { useGlobalContextStore } from "@/stores/context"
 
 export default function BookIndexer() {
-    const [bookTitle, setBookTitle] = useState("");
+    const [ bookTitle, setBookTitle ] = useState("");
     const { addBook, addBookTopic, addBookSubTopic } = useBookStore();
     const { setGlobalBookTitle } = useGlobalContextStore();
     const router = useRouter();

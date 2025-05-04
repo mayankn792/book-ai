@@ -7,6 +7,7 @@ export interface Book {
 
 export interface BookTopic {
     topic: string;
+    content?: string; //TODO - Add content node for book topic
     subtopics: BookSubTopic[];
 }
 
@@ -21,8 +22,10 @@ interface BookState {
     addBookTopic: (bookTitle: string, bookTopic: BookTopic) => void;
     addBookSubTopic: (bookTitle: string, bookTopic: string, bookSubTopic: BookSubTopic) => void;
     addBookContent: (bookTitle: string, bookTopic: string, bookSubTopic: string, content: string) => void;
+    addBookTopicContent: (bookTitle: string, bookTopic: string, content: string) => void;
 }   
 
+//TODO - ref common code block
 export const useBookStore = create<BookState>((set) => ({ 
     books: [],
     addBook: (book: Book) => set((state: BookState) => ({ books: [...state.books, book] })),
@@ -62,4 +65,17 @@ export const useBookStore = create<BookState>((set) => ({
 
         return { ...state };
     }),
+    addBookTopicContent: (bookTitle: string, bookTopic: string, content: string) => set((state: BookState) => {
+        const book = state.books.find((book: Book) => book.title === bookTitle);
+        if (!book || !book.bookTopic) {
+            return { ...state };
+        }
+
+        const topic = book.bookTopic.find((bt: BookTopic) => bt.topic === bookTopic);
+        if (topic) {
+            topic.content = content;
+        }
+        
+        return { ...state };
+    })
 }));
