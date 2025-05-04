@@ -3,26 +3,26 @@
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { useBookStore, Book, BookSubTopic } from "@/stores/book";
-import { Context, useContextStore } from "@/stores/context"
+import { useBookStore, Book } from "@/stores/book";
+import { useContextStore } from "@/stores/context"
 
 export default function BookIndexer() {
     const [bookTitle, setBookTitle] = useState("");
-    const { books, addBook, addBookTopic, addBookSubTopic } = useBookStore();
+    const { addBook, addBookTopic, addBookSubTopic } = useBookStore();
     const { setGlobalBookTitle } = useContextStore();
     const router = useRouter();
 
     return (
         <div className="flex flex-row">
-            <div className="basis-2/12"></div>
-            <div className="basic-8/12 flex flex-col justify-center min-h-screen py-2 antialiased">
+            <div className="basis-3/12"></div>
+            <div className="basic-6/12 flex flex-col justify-center min-h-screen py-2 antialiased">
                 <h5 className="text-2xl">What do you want to generate?</h5>
                 <br></br>
                 <div className="bg-white p-5 text-blue-600 rounded-sm">
                     <textarea rows={4} cols={50} className="appearance-none border-none p-0 font-inherit text-inherit outline-none bg-transparent resize-none" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
                     <div className="flex flex-row-reverse">
                         <button className="btn btn-primary" onClick={async () => {
-                            console.log("book title", bookTitle);
+
                             const book: Book = {
                                 title: bookTitle,
                                 bookTopic: []
@@ -56,7 +56,7 @@ export default function BookIndexer() {
                     </div>
                 </div>
             </div>
-            <div className="basis-2/12"></div>
+            <div className="basis-3/12"></div>
         </div>
     );
 }

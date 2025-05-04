@@ -42,5 +42,5 @@ Conclusion or wrap-up
 Keep language and complexity appropriate to the intended audience inferred from the topic (e.g., simple for kids, formal for professionals, deep for researchers).
 Maintain coherence, logical flow, and creativity throughout the content.
 Always base your writing tone and style on the context of the input provided. Be versatile and responsive.
-NOTE - Just display the content
+NOTE - Just display the content and return content in HTML formated tags
 `;
