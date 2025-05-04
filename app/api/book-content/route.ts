@@ -7,12 +7,11 @@ export async function GET(request: NextApiRequest) {
         return new Response("Invalid request URL", { status: 400 });
     }
     const url = new URL(request.url);
-    // const bookTitle = url.searchParams.get("bookTitle");
+    const bookTitle = url.searchParams.get("bookTitle");
     const bookTopic = url.searchParams.get("bookTopic");
     const bookSubTopic = url.searchParams.get("bookSubTopic");
 
-    //typeof bookTitle !== "string" ||
-    if ( typeof bookTopic !== "string" || typeof bookSubTopic !== "string") {
+    if (typeof bookTitle !== "string" || typeof bookTopic !== "string" || typeof bookSubTopic !== "string") {
         return new Response("Invalid book title or topic or subtopic", { status: 400 });
     }
 

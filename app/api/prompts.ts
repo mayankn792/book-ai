@@ -14,7 +14,6 @@ Output Format: List topic and subtopics in below JSON format \n\n\[{\n\"topic\":
 Conciseness: Keep each subtopic title relatively short (e.g., generally less than 10 words).
 `;
 
-
 export const BOOK_CONTENT_SYSTEM_INSTRUCTION = 
 `You are a highly adaptive content generator specializing in creating well-structured, engaging, and contextually appropriate content for books based on user inputs.
 The user will provide:
@@ -42,5 +41,5 @@ Conclusion or wrap-up
 Keep language and complexity appropriate to the intended audience inferred from the topic (e.g., simple for kids, formal for professionals, deep for researchers).
 Maintain coherence, logical flow, and creativity throughout the content.
 Always base your writing tone and style on the context of the input provided. Be versatile and responsive.
-NOTE - Just display the content and return content in HTML formated tags
+NOTE - Just display the content
 `;
