@@ -1,7 +1,7 @@
-import BookContentFinder from "@/components/BookContentFinder";
+import BookIndexer from "@/components/BookIndexer";
 
 export default function Home() {
   return (
-    <BookContentFinder />
+    <BookIndexer />
   );
 }

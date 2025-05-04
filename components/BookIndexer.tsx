@@ -1,15 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, Book, BookSubTopic } from "@/stores/book";
 import { Context, useContextStore } from "@/stores/context"
-//TODO - change the name of this component
-export default function BookContentFinder() {
+
+export default function BookIndexer() {
     const [bookTitle, setBookTitle] = useState("");
-    const { setBookIndex } = useBookIndexStore();
     const { books, addBook, addBookTopic, addBookSubTopic } = useBookStore();
     const { setGlobalBookTitle } = useContextStore();
     const router = useRouter();
@@ -37,8 +35,6 @@ export default function BookContentFinder() {
                                 },
                             });
 
-                            console.log("response", response);
-                            setBookIndex(response.data);
                             response.data.map((item : { topic: string, subtopics: string[] }) => {
                                 console.log(item.topic, item.subtopics);
                                 const bookTopic = {
@@ -55,9 +51,7 @@ export default function BookContentFinder() {
                                 })
                             })
                             
-                            console.log("logging book here...")
-                            console.log(books)
-                            router.push(`/editor?bookTitle=${encodeURIComponent(bookTitle)}`);
+                            router.push('/editor');
                         }}>Generate</button>
                     </div>
                 </div>

@@ -1,16 +1,10 @@
 "use client";
 
 import axios from "axios";
-import { useBookIndexStore } from "@/stores/bookIndex";
 import { useBookStore, BookTopic, BookSubTopic } from "@/stores/book";
 import { useContextStore } from "@/stores/context";
-import { useState } from "react";
 
-interface TitleProp {
-  title: string | null,
-}
-
-export default function BookIndex({ title }: TitleProp) {
+export default function BookIndex() {
   const { books } = useBookStore();
   const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useContextStore();
   const book = books.find((book) => book.title === bookContext.bookTitle);
