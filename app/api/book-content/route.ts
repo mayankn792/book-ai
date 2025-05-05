@@ -11,11 +11,12 @@ export async function GET(request: NextApiRequest) {
     const bookTopic = url.searchParams.get("bookTopic");
     const bookSubTopic = url.searchParams.get("bookSubTopic");
 
-    if (typeof bookTitle !== "string" || typeof bookTopic !== "string" || typeof bookSubTopic !== "string") {
+    if (typeof bookTitle !== "string" || typeof bookTopic !== "string") {
         return new Response("Invalid book title or topic or subtopic", { status: 400 });
     }
 
-    const contents = "book title - " + + " book topic - " + bookTopic + " book sub-topic - " + bookSubTopic;
+    const bookSubTopicContent = bookSubTopic ? " book sub-topic" + bookSubTopic : "";
+    const contents = "book title - " + + " book topic - " + bookTopic + bookSubTopicContent;
     const generatedResponse = await generateContent(contents, BOOK_CONTENT_SYSTEM_INSTRUCTION);
     return new Response(generatedResponse.text);
 }
