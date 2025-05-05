@@ -13,7 +13,19 @@ export default function BookIndex() {
     {
       book && book.bookTopic.map((item: BookTopic) => (
         <div key={item.topic}>
-          <h1>topic - {item.topic}</h1>
+          <h1>topic - {item.topic} <button onClick={async () => {
+                  const contentResponse = await axios.get("/api/book-content", {
+                    params: {
+                      bookTitle: bookContext.bookTitle,
+                      bookTopic: item.topic,
+                    },
+                  });
+
+                  setGlobalBookTopic(item.topic)
+                  setGlobalContent(contentResponse.data)
+                }}>
+                  Get Content
+                </button></h1>
           <ul>
             {item.subtopics.map((subtopic: BookSubTopic) => (
               <li key={subtopic.subtopic}>
