@@ -13,6 +13,7 @@ export default function BookIndex() {
     {
       book && book.bookTopic.map((item: BookTopic) => (
         <div key={item.topic}>
+          {/* TODO - Ref onclick call. Can be made generic */}
           <h1>topic - {item.topic} <button onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
