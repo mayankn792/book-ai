@@ -12,9 +12,9 @@ export default function BookIndex() {
   return <div>
     {
       book && book.bookTopic.map((item: BookTopic) => (
-        <div key={item.topic}>
+        <div className="bg-white" key={item.topic}>
           {/* TODO - Ref onclick call. Can be made generic */}
-          <h1>topic - {item.topic} <button onClick={async () => {
+          <h1><button className="btn btn-neutral btn-outline" onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
                       bookTitle: bookContext.bookTitle,
@@ -29,13 +29,13 @@ export default function BookIndex() {
                   }
                   console.log(book)
                 }}>
-                  Get Content
+                  {item.topic} 
                 </button></h1>
-          <ul>
+          <ol className="list-decimal list-inside">
             {item.subtopics.map((subtopic: BookSubTopic) => (
+              
               <li key={subtopic.subtopic}>
-                {subtopic.subtopic}
-                <button onClick={async () => {
+                <button className="btn btn-neutral btn-outline" onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
                       bookTitle: bookContext.bookTitle,
@@ -53,11 +53,11 @@ export default function BookIndex() {
                   }
                   console.log(book)
                 }}>
-                  Get Content
+                  {subtopic.subtopic}
                 </button>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       ))
     }
