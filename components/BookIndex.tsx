@@ -5,7 +5,7 @@ import { useBookStore, BookTopic, BookSubTopic } from "@/stores/book";
 import { useGlobalContextStore } from "@/stores/context";
 
 export default function BookIndex() {
-  const { books } = useBookStore();
+  const { books, addBookContent, addBookTopicContent } = useBookStore();
   const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useGlobalContextStore();
   const book = books.find((book) => book.title === bookContext.bookTitle);
 
@@ -21,9 +21,13 @@ export default function BookIndex() {
                       bookTopic: item.topic,
                     },
                   });
-
+                  
                   setGlobalBookTopic(item.topic)
                   setGlobalContent(contentResponse.data)
+                  if (bookContext.bookTitle) {
+                    addBookTopicContent(bookContext.bookTitle, item.topic, contentResponse.data);
+                  }
+                  console.log(book)
                 }}>
                   Get Content
                 </button></h1>
@@ -43,6 +47,11 @@ export default function BookIndex() {
                   setGlobalBookTopic(item.topic)
                   setGlobalBookSubTopic(subtopic.subtopic)
                   setGlobalContent(contentResponse.data)
+
+                  if (bookContext.bookTitle) {
+                    addBookContent(bookContext.bookTitle, item.topic, subtopic.subtopic, contentResponse.data);
+                  }
+                  console.log(book)
                 }}>
                   Get Content
                 </button>
