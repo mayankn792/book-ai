@@ -21,7 +21,7 @@ export default function BookIndexer() {
                 <div className="bg-white p-5 text-blue-600 rounded-sm">
                     <textarea rows={4} cols={50} className="appearance-none border-none p-0 font-inherit text-inherit outline-none bg-transparent resize-none" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
                     <div className="flex flex-row-reverse">
-                        <button className="btn btn-primary" onClick={async () => {
+                        <button className="btn btn-outline btn-primary" onClick={async () => {
 
                             const book: Book = {
                                 title: bookTitle,
