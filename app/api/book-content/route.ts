@@ -15,6 +15,8 @@ export async function GET(request: NextApiRequest) {
         return new Response("Invalid book title or topic or subtopic", { status: 400 });
     }
 
+    console.log(bookTitle, bookSubTopic, bookSubTopic)
+
     const bookSubTopicContent = bookSubTopic ? " book sub-topic" + bookSubTopic : "";
     const contents = "book title - " + + " book topic - " + bookTopic + bookSubTopicContent;
     const generatedResponse = await generateContent(contents, BOOK_CONTENT_SYSTEM_INSTRUCTION);

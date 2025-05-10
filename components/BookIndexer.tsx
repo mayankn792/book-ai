@@ -28,7 +28,7 @@ export default function BookIndexer() {
                                 bookTopic: []
                             }
                             addBook(book);
-                            setGlobalBookTitle(bookTitle); // add title to global context
+                                setGlobalBookTitle(bookTitle); // add title to global context
                             const response = await axios.get("/api/book-index", {
                                 params: {
                                     bookTitle: bookTitle,

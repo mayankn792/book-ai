@@ -7,6 +7,6 @@ export default function BookContent() {
 
     return <div>
         {/* TODO - Render content in HTML style */}
-        {bookContext.content}
+        <pre className="font-mono p-2 border border-gray-300 overflow-x-auto whitespace-pre-wrap leading-relaxed">{bookContext.content}</pre>
     </div>
 }

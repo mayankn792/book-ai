@@ -9,7 +9,7 @@ export default function BookIndex() {
   const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useGlobalContextStore();
   const book = books.find((book) => book.title === bookContext.bookTitle);
 
-  return <div className="h-screen overflow-auto">
+  return <div className="h-screen overflow-auto fixed">
     {
       book && book.bookTopic.map((item: BookTopic) => (
         <div className="bg-white" key={item.topic}>
