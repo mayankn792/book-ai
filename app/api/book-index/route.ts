@@ -7,13 +7,13 @@ export async function GET(request: NextApiRequest) {
         return new Response("Invalid request URL", { status: 400 });
     }
     const url = new URL(request.url);
-    const bookTitle = url.searchParams.get("bookTitle");
+    let bookTitle : string = url.searchParams.get("bookTitle") || "";
 
     if (typeof bookTitle !== "string") {
         return new Response("Invalid book title", { status: 400 });
     }
 
-    const contents = "book title - " + bookTitle
+    const contents = "book title - " + bookTitle.replace("NaN", "");
     const generatedResponse = await generateContent(contents, BOOK_INDEX_SYSTEM_INSTRUCTION);
     return new Response(generatedResponse?.text?.replace(/^```json/, "").replace(/```$/, ""));
 }

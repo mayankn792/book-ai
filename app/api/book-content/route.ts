@@ -17,8 +17,8 @@ export async function GET(request: NextApiRequest) {
 
     console.log(bookTitle, bookSubTopic, bookSubTopic)
 
-    const bookSubTopicContent = bookSubTopic ? " book sub-topic" + bookSubTopic : "";
-    const contents = "book title - " + + " book topic - " + bookTopic + bookSubTopicContent;
+    const bookSubTopicContent = bookSubTopic ? " book sub-topic" + bookSubTopic?.replace("NaN", "") : "";
+    const contents = "book title - " + bookTitle?.replace("NaN", "") + " book topic - " + bookTopic?.replace("NaN", "") + bookSubTopicContent;
     const generatedResponse = await generateContent(contents, BOOK_CONTENT_SYSTEM_INSTRUCTION);
     return new Response(generatedResponse.text);
 }

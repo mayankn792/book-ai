@@ -9,12 +9,12 @@ export default function BookIndex() {
   const { bookContext, setGlobalBookTopic, setGlobalBookSubTopic, setGlobalContent } = useGlobalContextStore();
   const book = books.find((book) => book.title === bookContext.bookTitle);
 
-  return <div className="h-screen overflow-auto fixed">
+  return <div className="font-mono p-2 border border-gray-300 overflow-x-auto whitespace-pre-wrap leading-relaxed h-screen overflow-auto fixed">
     {
       book && book.bookTopic.map((item: BookTopic) => (
-        <div className="bg-white" key={item.topic}>
+        <div key={item.topic}>
           {/* TODO - Ref onclick call. Can be made generic */}
-          <h1><button className="btn btn-neutral btn-outline" onClick={async () => {
+          <h1><button className="btn btn-neutral" onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
                       bookTitle: bookContext.bookTitle,
@@ -35,7 +35,7 @@ export default function BookIndex() {
             {item.subtopics.map((subtopic: BookSubTopic) => (
               
               <li key={subtopic.subtopic}>
-                <button className="btn btn-neutral btn-outline" onClick={async () => {
+                <button className="btn btn-neutral" onClick={async () => {
                   const contentResponse = await axios.get("/api/book-content", {
                     params: {
                       bookTitle: bookContext.bookTitle,
