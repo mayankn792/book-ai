@@ -13,7 +13,7 @@ export async function GET(request: NextApiRequest) {
         return new Response("Invalid book title", { status: 400 });
     }
 
-    const contents = "book title - " + bookTitle.replace("NaN", "");
+    const contents = "book title - " + bookTitle.replace("NaN", ""); //TODO - quick fix
     const generatedResponse = await generateContent(contents, BOOK_INDEX_SYSTEM_INSTRUCTION);
     return new Response(generatedResponse?.text?.replace(/^```json/, "").replace(/```$/, ""));
 }
