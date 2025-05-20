@@ -3,6 +3,8 @@
 import axios from "axios";
 import { useBookStore, BookTopic, BookSubTopic } from "@/stores/book";
 import { useGlobalContextStore } from "@/stores/context";
+import { generateContentWrapper } from "@/app/actions/generate";
+import { BOOK_CONTENT_SYSTEM_INSTRUCTION } from "@/app/api/prompts";
 
 export default function BookIndex() {
   const { books, addBookContent, addBookTopicContent } = useBookStore();
@@ -15,17 +17,25 @@ export default function BookIndex() {
         <div key={item.topic}>
           {/* TODO - Ref onclick call. Can be made generic */}
           <h1><button className="btn btn-neutral" onClick={async () => {
-                  const contentResponse = await axios.get("/api/book-content", {
-                    params: {
-                      bookTitle: bookContext.bookTitle,
-                      bookTopic: item.topic,
-                    },
-                  });
+                  // const contentResponse = await axios.get("/api/book-content", {
+                  //   params: {
+                  //     bookTitle: bookContext.bookTitle,
+                  //     bookTopic: item.topic,
+                  //   },
+                  // });
+
+                  const content = "book title - " + bookContext?.bookTitle?.replace("NaN", "") + " book topic - " + item.topic?.replace("NaN", "");
+
+                  const contentResponse = await generateContentWrapper(content, BOOK_CONTENT_SYSTEM_INSTRUCTION)
+
+                  if (!contentResponse) {
+                    return; //something went wrong
+                  }
                   
                   setGlobalBookTopic(item.topic)
-                  setGlobalContent(contentResponse.data)
+                  setGlobalContent(contentResponse)
                   if (bookContext.bookTitle) {
-                    addBookTopicContent(bookContext.bookTitle, item.topic, contentResponse.data);
+                    addBookTopicContent(bookContext.bookTitle, item.topic, contentResponse);
                   }
                   console.log(book)
                 }}>

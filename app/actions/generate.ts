@@ -2,6 +2,7 @@
 
 import {generateContent} from "@/app/api/utils";
 
-async function generateContentWrapper(content: string, systemInstruction: string) {
-    return generateContent(content, systemInstruction);
+export async function generateContentWrapper(content: string, systemInstruction: string) {
+    const response = await generateContent(content, systemInstruction);
+    return response?.text?.replace(/^```json/, "").replace(/```$/, "");
 }

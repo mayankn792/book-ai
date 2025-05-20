@@ -10,5 +10,6 @@ export async function generateContent(content: string, systemInstruction: string
       },
     });
 
+    console.log('utils -- ', response)
     return response;
 }
