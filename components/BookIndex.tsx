@@ -25,9 +25,7 @@ export default function BookIndex() {
                   // });
 
                   const content = "book title - " + bookContext?.bookTitle?.replace("NaN", "") + " book topic - " + item.topic?.replace("NaN", "");
-
                   const contentResponse = await generateContentWrapper(content, BOOK_CONTENT_SYSTEM_INSTRUCTION)
-
                   if (!contentResponse) {
                     return; //something went wrong
                   }
