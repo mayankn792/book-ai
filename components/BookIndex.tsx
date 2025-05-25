@@ -44,20 +44,27 @@ export default function BookIndex() {
               
               <li key={subtopic.subtopic}>
                 <button className="btn btn-neutral" onClick={async () => {
-                  const contentResponse = await axios.get("/api/book-content", {
-                    params: {
-                      bookTitle: bookContext.bookTitle,
-                      bookTopic: item.topic,
-                      bookSubTopic: subtopic.subtopic,
-                    },
-                  });
+                  // const contentResponse = await axios.get("/api/book-content", {
+                  //   params: {
+                  //     bookTitle: bookContext.bookTitle,
+                  //     bookTopic: item.topic,
+                  //     bookSubTopic: subtopic.subtopic,
+                  //   },
+                  // });
+
+                  const bookSubTopicContent = subtopic.subtopic ? " book sub-topic" + subtopic.subtopic?.replace("NaN", "") : "";
+                  const content = "book title - " + bookContext.bookTitle?.replace("NaN", "") + " book topic - " + item.topic?.replace("NaN", "") + bookSubTopicContent;
+                  const contentResponse = await generateContentWrapper(content, BOOK_CONTENT_SYSTEM_INSTRUCTION)
+                  if (!contentResponse) {
+                    return; //something went wrong
+                  }
 
                   setGlobalBookTopic(item.topic)
                   setGlobalBookSubTopic(subtopic.subtopic)
-                  setGlobalContent(contentResponse.data)
+                  setGlobalContent(contentResponse)
 
                   if (bookContext.bookTitle) {
-                    addBookContent(bookContext.bookTitle, item.topic, subtopic.subtopic, contentResponse.data);
+                    addBookContent(bookContext.bookTitle, item.topic, subtopic.subtopic, contentResponse);
                   }
                   console.log(book)
                 }}>
