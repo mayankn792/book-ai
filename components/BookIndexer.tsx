@@ -16,8 +16,7 @@ export default function BookIndexer() {
         <div className="flex flex-row">
             <div className="basis-3/12"></div>
             <div className="basic-6/12 flex flex-col justify-center min-h-screen py-2 antialiased">
-                <h5 className="text-2xl">What do you want to generate?</h5>
-                <br></br>
+                <h5 className="text-2xl text-bold">What do you have in mind?</h5>
                 <div className="bg-white p-5 text-blue-600 rounded-sm">
                     <textarea rows={4} cols={50} className="appearance-none border-none p-0 font-inherit text-inherit outline-none bg-transparent resize-none" onChange={(event) => setBookTitle(event.target.value)} placeholder="book title goes here ...." />
                     <div className="flex flex-row-reverse">
